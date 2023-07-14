@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Keybind (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Keybind (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
