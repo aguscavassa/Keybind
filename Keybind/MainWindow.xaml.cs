@@ -1,3 +1,4 @@
+using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -25,12 +26,23 @@ namespace Keybind
     {
         public MainWindow()
         {
+            this.Title = "Keybind";
             this.InitializeComponent();
+            SystemBackdrop = new MicaBackdrop()
+            { Kind = MicaKind.BaseAlt };
+            Life.Init();
         }
 
         private void myButton_Click(object sender, RoutedEventArgs e)
         {
-            myButton.Content = "Clicked";
+            UserPasswords uP = new UserPasswords("userMedia");
+            Life.SaveUserPasswords(uP);
+            myButton.Content = uP.ToString();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Exit();
         }
     }
 }
