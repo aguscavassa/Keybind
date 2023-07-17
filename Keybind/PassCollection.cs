@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Keybind.Interfaces;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,58 +8,31 @@ using System.Threading.Tasks;
 
 namespace Keybind
 {
-    public class PassCollection
+    public class UserKeysCollection : IUserKeysCollection
     {
-        private Dictionary<string, string> passwordCollection;
-        public Dictionary<string, string> PasswordCollection
+        public string Uuid;
+        private Dictionary<string, Dictionary<string, string>> taggedKeys;
+
+        public Dictionary<string, Dictionary<string, string>> TaggedKeys { get { return taggedKeys; } }
+
+        public UserKeysCollection(string uuid)
         {
-            get { return passwordCollection; }
-            set { passwordCollection = value; }
+            Uuid = uuid;
         }
 
-        public PassCollection()
+        public void AddTagCollection(string tag)
         {
-            PasswordCollection = new Dictionary<string, string>();
+            TaggedKeys.Add(tag, new Dictionary<string, string>());
         }
 
-        public PassCollection(Dictionary<string, string> pairs)
+        public bool RemoveTagCollection(string tag)
         {
-            PasswordCollection ??= new Dictionary<string, string>();
-            PasswordCollection.Clear();
-            PasswordCollection = pairs;
+            return TaggedKeys.Remove(tag);
         }
 
-        public void AddToCollection(string key, string value)
+        public Dictionary<string, string> GetTagCollection(string tag)
         {
-            PasswordCollection.Add(key, value);
-        }
-
-        public void RemoveFromCollection(string key)
-        {
-            PasswordCollection.Remove(key);
-        }
-
-        public string GetPassword(string key)
-        {
-            return PasswordCollection[key];
-        }
-    }
-
-    public class UserPasswords
-    {
-        private Dictionary<string, PassCollection> taggedCollection;
-
-        public Dictionary<string, PassCollection> TaggedCollection {
-            get { return taggedCollection; }
-            set { taggedCollection = value; }
-        }
-
-        public UserPasswords(string tag)
-        {
-            TaggedCollection = new Dictionary<string, PassCollection>
-            {
-                { tag, new PassCollection() }
-            };
+            return TaggedKeys[tag];
         }
     }
 }

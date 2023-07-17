@@ -5,8 +5,10 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Animation;
 using Microsoft.UI.Xaml.Navigation;
 using System;
+using Keybind.Front;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,18 +28,10 @@ namespace Keybind
     {
         public MainWindow()
         {
-            this.Title = "Keybind";
             this.InitializeComponent();
             SystemBackdrop = new MicaBackdrop()
             { Kind = MicaKind.BaseAlt };
-            Life.Init();
-        }
-
-        private void myButton_Click(object sender, RoutedEventArgs e)
-        {
-            UserPasswords uP = new UserPasswords("userMedia");
-            Life.SaveUserPasswords(uP);
-            myButton.Content = uP.ToString();
+            
         }
 
         private void Window_Closed(object sender, EventArgs e)

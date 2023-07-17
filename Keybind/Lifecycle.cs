@@ -9,7 +9,7 @@ using System.Security.Cryptography;
 
 namespace Keybind;
 
-public static class Life
+public static class Lifecycle
 {
     private static string userDir;
     private static string userUuid;
@@ -30,7 +30,7 @@ public static class Life
         }
     }
 
-    public static void SaveUserPasswords(UserPasswords userPasswords)
+    public static void SaveUserPasswords(UserKeysCollection userPasswords)
     {
         string jsonSerialized = JsonSerializer.Serialize(userPasswords);
         byte[] buffer = Encoding.UTF8.GetBytes(jsonSerialized);
@@ -45,17 +45,22 @@ public static class Life
         }
     }
 
-    public static UserPasswords LoadUserPasswords()
+    public static UserKeysCollection LoadUserPasswords()
     {
         try
         {
             string protectedText = File.ReadAllText($"{UserDir}\\{UserUuid}.dat");
             byte[] protectedBuffer = Convert.FromBase64String(protectedText);
             byte[] buffer = ProtectedData.Unprotect(protectedBuffer, null, DataProtectionScope.CurrentUser);
-            return JsonSerializer.Deserialize<UserPasswords>(Encoding.UTF8.GetString(buffer));
+            return JsonSerializer.Deserialize<UserKeysCollection>(Encoding.UTF8.GetString(buffer));
         } catch
         {
             throw;
         }
+    }
+
+    public static UserKeysCollection GenerateUserKeysCollection(string uuid)
+    {
+        return new UserKeysCollection(uuid);
     }
 }
