@@ -13,7 +13,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Front\AddNewPasswordModal.xaml" />
-    <None Remove="Front\Main.xaml" />
     <None Remove="Front\SettingsModal.xaml" />
   </ItemGroup>
 
@@ -41,11 +40,6 @@
   -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Front\Main.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Front\AddNewPasswordModal.xaml">

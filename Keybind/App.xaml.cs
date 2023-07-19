@@ -20,22 +20,8 @@ namespace Keybind
         {
             m_window = new MainWindow();
             m_window.Title = "Keybind";
-            
-            m_window.Content = rootFrame = new Frame();
             m_window.Activate();
-            Navigate(typeof(Main), null, new DrillInNavigationTransitionInfo());
             Lifecycle.Init();
-        }
-
-        public void Navigate(Type page, object param = null, NavigationTransitionInfo navInfo = null)
-        {
-            if (param == null)
-            {
-                rootFrame.Navigate(page, null, navInfo);
-            } else 
-            {
-                rootFrame.Navigate(page, param, navInfo);
-            }
         }
     }
 }

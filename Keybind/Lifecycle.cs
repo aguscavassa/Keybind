@@ -20,6 +20,7 @@ public static class Lifecycle
     public static void Init()
     {
         UserDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Data";
+        Directory.CreateDirectory(UserDir);
         if (File.Exists(UserDir + "\\user.dat"))
         {
             userUuid = File.ReadAllText(UserDir + "\\user.dat");
