@@ -11,7 +11,6 @@ namespace Keybind
     public partial class App : Application
     {
         private Window m_window;
-        internal Frame rootFrame;
         public App()
         {
             this.InitializeComponent();

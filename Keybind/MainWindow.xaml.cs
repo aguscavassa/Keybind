@@ -33,6 +33,8 @@ namespace Keybind
     /// </summary>
     public sealed partial class MainWindow : Window
     {
+        [DllImport("Shcore.dll", SetLastError = true)]
+        internal static extern int GetDpiForMonitor(IntPtr hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
         private AppWindow _mainAppWindow;
         public MainWindow()
         {
@@ -42,6 +44,7 @@ namespace Keybind
             _mainAppWindow = GetAppWindowForCurrentWindow();
             _mainAppWindow.TitleBar.ButtonBackgroundColor = Color.FromArgb(0, 0, 0, 0);
             _mainAppWindow.Resize(new Windows.Graphics.SizeInt32(1280, 720));
+            _mainAppWindow.TitleBar.ButtonHoverBackgroundColor = Color.FromArgb(128,58,58,58);
 
             if (AppWindowTitleBar.IsCustomizationSupported())
             {
@@ -53,6 +56,7 @@ namespace Keybind
             {
                 TitleBar.Visibility = Visibility.Collapsed;
             }
+            NavigateDefault(typeof(MainView), null);
         }
 
         private void TitleBarSizeChanged(object sender, SizeChangedEventArgs e)
@@ -88,6 +92,7 @@ namespace Keybind
                                 + IconCol.ActualWidth
                                 + Title.ActualWidth
                                 + LeftDraggingCol.ActualWidth
+                                + HomeCol.ActualWidth
                                 + AddCol.ActualWidth
                                 + FindCol.ActualWidth
                                 + SettingsCol.ActualWidth) * scale);
@@ -100,9 +105,6 @@ namespace Keybind
 
             _mainWindow.TitleBar.SetDragRectangles(dragRects);
         }
-
-        [DllImport("Shcore.dll", SetLastError = true)]
-        internal static extern int GetDpiForMonitor(IntPtr hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
 
         internal enum Monitor_DPI_Type : int
         {
@@ -135,6 +137,26 @@ namespace Keybind
             IntPtr hWnd = WindowNative.GetWindowHandle(this);
             WindowId wndId = Win32Interop.GetWindowIdFromWindow(hWnd);
             return AppWindow.GetFromWindowId(wndId);
+        }
+
+        private void NavigateDefault(Type page, object param)
+        {
+            MainFrame.Navigate(page, param, new DrillInNavigationTransitionInfo());
+        }
+
+        private void AddPasswordButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateDefault(typeof(AddNewPasswordModal), null);
+        }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateDefault(typeof(SettingsModal), null);
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigateDefault(typeof(MainView), null);
         }
     }
 }

@@ -12,12 +12,13 @@
         <MicaBackdrop Kind="BaseAlt" />
     </Window.SystemBackdrop>
     <StackPanel Orientation="Vertical">
-        <Grid x:Name="TitleBar" Height="48" VerticalAlignment="Top">
+        <Grid x:Name="TitleBar" Height="48">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="LeftPaddingCol" Width="0"/>
                 <ColumnDefinition x:Name="IconCol" Width="Auto" />
                 <ColumnDefinition x:Name="NameCol" Width="Auto" />
                 <ColumnDefinition x:Name="LeftDraggingCol" Width="*" />
+                <ColumnDefinition x:Name="HomeCol" Width="Auto" />
                 <ColumnDefinition x:Name="AddCol" Width="Auto" />
                 <ColumnDefinition x:Name="FindCol" Width="Auto" />
                 <ColumnDefinition x:Name="SettingsCol" Width="Auto" />
@@ -25,19 +26,44 @@
                 <ColumnDefinition x:Name="RightPaddingCol" Width="0" />
             </Grid.ColumnDefinitions>
             <Image x:Name="ProperIcon" Source="/Assets/Square44x44Logo.scale-200.png"
-               Grid.Column="1" Width="16" Height="16" Margin="16,0,0,0"/>
+               Grid.Column="1" VerticalAlignment="Center" Width="16" Height="16" Margin="16,0,0,0"/>
             <TextBlock x:Name="Title" Text="Keybind" Grid.Column="2" VerticalAlignment="Center" Margin="8,0,0,0"/>
-            <Button x:Name="AddPasswordButton" Height="36" Grid.Column="4" Margin="0,10,8,0">
+            <Button x:Name="HomeButton" Height="36" Grid.Column="4" Margin="0,10,8,0" Click="HomeButton_Click">
+                <Viewbox Height="15" Width="15" Margin="0,0,0,0">
+                    <SymbolIcon Symbol="Home"/>
+                </Viewbox>
+            </Button>
+            <DropDownButton x:Name="AddButton" Height="36" Grid.Column="5" Margin="8,10,8,0" >
                 <StackPanel Orientation="Horizontal">
                     <Viewbox MaxHeight="15" MaxWidth="15" Margin="0,0,6,0">
                         <SymbolIcon Symbol="Add" />
                     </Viewbox>
-                    <TextBlock Text="Add"/>
+                    <TextBlock Text="Add..."/>
                 </StackPanel>
-            </Button>
-            <AutoSuggestBox Grid.Column="5" QueryIcon="Find" PlaceholderText="Search tags or passwords..."
+                <DropDownButton.Flyout>
+                    <MenuFlyout Placement="Bottom" >
+                        <MenuFlyout.MenuFlyoutPresenterStyle>
+                            <Style TargetType="MenuFlyoutPresenter">
+                                <Setter Property="Background" Value="{ThemeResource AcrylicInAppFillColorBaseBrush}"/>
+                            </Style>
+                        </MenuFlyout.MenuFlyoutPresenterStyle>
+                        <MenuFlyoutItem Text="Tag">
+                            <MenuFlyoutItem.Icon>
+                                <SymbolIcon Symbol="Tag" />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutSeparator/>
+                        <MenuFlyoutItem Text="Password">
+                            <MenuFlyoutItem.Icon>
+                                <SymbolIcon Symbol="Account" />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </DropDownButton.Flyout>
+            </DropDownButton>
+            <AutoSuggestBox Grid.Column="6" QueryIcon="Find" PlaceholderText="Search tags or passwords..."
                         Width="380" Height="36" VerticalAlignment="Center" Margin="8,10,8,0" />
-            <Button x:Name="SettingsButton" Height="36" Grid.Column="6" Margin="8,10,0,0">
+            <Button x:Name="SettingsButton" Click="SettingsButton_Click" Height="36" Grid.Column="7" Margin="8,10,0,0">
                 <StackPanel Orientation="Horizontal">
                     <Viewbox MaxHeight="15" MaxWidth="15" Margin="0,0,6,0">
                         <SymbolIcon Symbol="Setting" />
@@ -46,7 +72,7 @@
                 </StackPanel>
             </Button>
         </Grid>
-        <StackPanel>
+        <StackPanel x:Name="MainFrameContainer">
             <Frame x:Name="MainFrame">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
