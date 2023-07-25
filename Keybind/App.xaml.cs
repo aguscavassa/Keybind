@@ -20,7 +20,6 @@ namespace Keybind
             m_window = new MainWindow();
             m_window.Title = "Keybind";
             m_window.Activate();
-            Lifecycle.Init();
         }
     }
 }

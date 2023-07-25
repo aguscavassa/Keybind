@@ -5,7 +5,8 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Security.Cryptography;
-
+using Keybind.Front;
+using System.Collections.Generic;
 
 namespace Keybind;
 
@@ -24,44 +25,21 @@ public static class Lifecycle
         if (File.Exists(UserDir + "\\user.dat"))
         {
             userUuid = File.ReadAllText(UserDir + "\\user.dat");
-        } else
+        }
+        else
         {
             userUuid = Guid.NewGuid().ToString();
             File.WriteAllText(UserDir + "\\user.dat", userUuid);
         }
-    }
-
-    public static void SaveUserPasswords(UserKeysCollection userPasswords)
-    {
-        string jsonSerialized = JsonSerializer.Serialize(userPasswords);
-        byte[] buffer = Encoding.UTF8.GetBytes(jsonSerialized);
-        byte[] protectedBuffer = ProtectedData.Protect(buffer, null, DataProtectionScope.CurrentUser);
-        string protectedText = Convert.ToBase64String(protectedBuffer);
         try
         {
-            File.WriteAllText($"{UserDir}\\{UserUuid}.dat", protectedText);
-        } catch
-        {
-            throw;
-        }
-    }
+            Services.CollectionManagement.LoadListFromDisk();
 
-    public static UserKeysCollection LoadUserPasswords()
-    {
-        try
+        } catch (FileNotFoundException)
         {
-            string protectedText = File.ReadAllText($"{UserDir}\\{UserUuid}.dat");
-            byte[] protectedBuffer = Convert.FromBase64String(protectedText);
-            byte[] buffer = ProtectedData.Unprotect(protectedBuffer, null, DataProtectionScope.CurrentUser);
-            return JsonSerializer.Deserialize<UserKeysCollection>(Encoding.UTF8.GetString(buffer));
-        } catch
-        {
-            throw;
+            Services.CollectionManagement.GenerateServiceCollection();
         }
-    }
-
-    public static UserKeysCollection GenerateUserKeysCollection(string uuid)
-    {
-        return new UserKeysCollection(uuid);
     }
 }
+
+    

@@ -12,6 +12,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using System.Diagnostics;
+using Keybind.Services;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,31 +25,13 @@ namespace Keybind.Front
     /// </summary>
     public sealed partial class MainView : Page
     {
-        public static List<Service> currentUserServicesList;
         public MainView()
         {
             this.InitializeComponent();
 
-            currentUserServicesList = new List<Service>(new Service[3]
-            {
-                new Service("Facebook", "1", "Social Media"),
-                new Service("Random Website", "2"),
-                new Service("Reddit", "3", "Social Media")
-            });
-        }
-
-        public class Service
-        {
-            public string Tag { get; set; }
-            public string ServiceName { get; set; }
-            public string Password { get; set; }
-
-            public Service(string name, string password, string tag = "None")
-            {
-                this.Tag = tag;
-                this.ServiceName = name;
-                this.Password = password;
-            }
+            CollectionManagement.Add(new Service("Facebook", "Agus", "fmjoriejy483"));
+            CollectionManagement.Add(new Service("Facebook", "Agustin", "fmjoriejy483"));
+            CollectionManagement.SaveListToDisk();
         }
     }
 }

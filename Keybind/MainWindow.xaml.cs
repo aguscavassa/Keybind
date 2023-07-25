@@ -21,10 +21,7 @@ using WinRT.Interop;
 using Windows.UI;
 using System.Runtime.InteropServices;
 using Windows.UI.ViewManagement;
-
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
+using System.Diagnostics;
 
 namespace Keybind
 {
@@ -39,6 +36,7 @@ namespace Keybind
         public MainWindow()
         {
             this.InitializeComponent();
+            Lifecycle.Init();
             SystemBackdrop = new MicaBackdrop()
             { Kind = MicaKind.BaseAlt };
             _mainAppWindow = GetAppWindowForCurrentWindow();
@@ -90,11 +88,12 @@ namespace Keybind
             Windows.Graphics.RectInt32 dragRectR;
             dragRectR.X = (int)((LeftPaddingCol.ActualWidth
                                 + IconCol.ActualWidth
-                                + Title.ActualWidth
+                                + TitleText.ActualWidth
                                 + LeftDraggingCol.ActualWidth
                                 + HomeCol.ActualWidth
                                 + AddCol.ActualWidth
                                 + FindCol.ActualWidth
+                                + EditCol.ActualWidth
                                 + SettingsCol.ActualWidth) * scale);
             dragRectR.Y = 0;
             dragRectR.Height = (int)(TitleBar.ActualHeight * scale);
@@ -144,7 +143,7 @@ namespace Keybind
             MainFrame.Navigate(page, param, new DrillInNavigationTransitionInfo());
         }
 
-        private void AddPasswordButton_Click(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             NavigateDefault(typeof(AddNewPasswordModal), null);
         }
@@ -158,5 +157,17 @@ namespace Keybind
         {
             NavigateDefault(typeof(MainView), null);
         }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            Debug.WriteLine(sender.Text);
+        }
+
+        
     }
 }
