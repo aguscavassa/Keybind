@@ -8,7 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls">
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls" xmlns:wctprimitives="using:CommunityToolkit.WinUI.UI.Controls.Primitives">
 
     <StackPanel CornerRadius="8" Margin="48,12,48,12" >
         <StackPanel.Style>
@@ -16,10 +16,49 @@
                 <Setter Property="Background" Value="#0FFFFFFF" />
             </Style>
         </StackPanel.Style>
-        <controls:DataGrid x:Name="MainDataGrid"
-                           Margin="12" AutoGenerateColumns="True"
+        <controls:DataGrid x:Name="MainDataGrid" x:FieldModifier="public"
+                           Margin="12"
                            ItemsSource="{x:Bind Services:CollectionManagement.ServiceCollection}"
+                           AutoGenerateColumns="False"
                            IsReadOnly="True" SelectionMode="Single" CurrentCellChanged="MainDataGrid_CurrentCellChanged">
+            <controls:DataGrid.Columns>
+                <controls:DataGridTemplateColumn Header="Name">
+                    <controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <TextBlock Padding="5,0,5,0" Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellTemplate>
+                </controls:DataGridTemplateColumn>
+                <controls:DataGridTemplateColumn Header="Tag">
+                    <controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <TextBlock Padding="5,0,5,0" Text="{Binding Tag}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellTemplate>
+                </controls:DataGridTemplateColumn>
+                <controls:DataGridTemplateColumn Header="User Name">
+                    <controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <TextBlock Padding="5,0,5,0" Text="{Binding User}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellTemplate>
+                </controls:DataGridTemplateColumn>
+                <controls:DataGridTemplateColumn Header="Password">
+                    <controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                                <TextBlock Padding="5,0,5,0" Text="{Binding Password}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellTemplate>
+                </controls:DataGridTemplateColumn>
+            </controls:DataGrid.Columns>
         </controls:DataGrid>
     </StackPanel>
 </Page>

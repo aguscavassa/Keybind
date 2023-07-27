@@ -25,9 +25,6 @@ using System.Diagnostics;
 
 namespace Keybind
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainWindow : Window
     {
         [DllImport("Shcore.dll", SetLastError = true)]
@@ -55,6 +52,7 @@ namespace Keybind
                 TitleBar.Visibility = Visibility.Collapsed;
             }
             NavigateDefault(typeof(MainView), null);
+            _mainAppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
         }
 
         private void TitleBarSizeChanged(object sender, SizeChangedEventArgs e)
@@ -165,9 +163,7 @@ namespace Keybind
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
-            Debug.WriteLine(sender.Text);
+            MainView.MainViewPage.SearchChanged(sender);
         }
-
-        
     }
 }

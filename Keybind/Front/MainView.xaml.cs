@@ -14,6 +14,8 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using System.Diagnostics;
 using Keybind.Services;
+using CommunityToolkit.WinUI.UI.Controls;
+using System.Collections.ObjectModel;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -25,6 +27,7 @@ namespace Keybind.Front
     /// </summary>
     public sealed partial class MainView : Page
     {
+        public static MainView MainViewPage;
         public MainView()
         {
             this.InitializeComponent();
@@ -32,6 +35,19 @@ namespace Keybind.Front
             CollectionManagement.Add(new Service("Facebook", "Agus", "fmjoriejy483"));
             CollectionManagement.Add(new Service("Facebook", "Agustin", "fmjoriejy483"));
             CollectionManagement.SaveListToDisk();
+
+            MainViewPage = this;
+        }
+
+        private void MainDataGrid_CurrentCellChanged(object sender, EventArgs e)
+        {
+        }
+
+        public void SearchChanged(AutoSuggestBox searchBox)
+        {
+            MainDataGrid.ItemsSource = new ObservableCollection<Service>(from item in CollectionManagement.ServiceCollection
+                                                                         where item.Name.Contains(searchBox.Text) || item.User.Contains(searchBox.Text) || item.Tag.Contains(searchBox.Text)
+                                                                         select item);
         }
     }
 }
