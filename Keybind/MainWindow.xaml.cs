@@ -88,6 +88,7 @@ namespace Keybind
                                 + IconCol.ActualWidth
                                 + TitleText.ActualWidth
                                 + LeftDraggingCol.ActualWidth
+                                + ExtraSpaceCol.ActualWidth
                                 + HomeCol.ActualWidth
                                 + AddCol.ActualWidth
                                 + FindCol.ActualWidth
@@ -95,7 +96,7 @@ namespace Keybind
                                 + SettingsCol.ActualWidth) * scale);
             dragRectR.Y = 0;
             dragRectR.Height = (int)(TitleBar.ActualHeight * scale);
-            dragRectR.Width = (int)(RightDraggingCol.ActualWidth * scale);
+            dragRectR.Width = (int)((RightDraggingCol.ActualWidth - ExtraSpaceCol.ActualWidth) * scale);
             dragRectsList.Add(dragRectR);
 
             Windows.Graphics.RectInt32[] dragRects = dragRectsList.ToArray();

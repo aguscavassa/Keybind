@@ -8,7 +8,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls" xmlns:wctprimitives="using:CommunityToolkit.WinUI.UI.Controls.Primitives">
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls" 
+    xmlns:wctprimitives="using:CommunityToolkit.WinUI.UI.Controls.Primitives">
 
     <StackPanel CornerRadius="8" Margin="48,12,48,12" >
         <StackPanel.Style>
@@ -20,13 +21,32 @@
                            Margin="12"
                            ItemsSource="{x:Bind Services:CollectionManagement.ServiceCollection}"
                            AutoGenerateColumns="False"
-                           IsReadOnly="True" SelectionMode="Single" CurrentCellChanged="MainDataGrid_CurrentCellChanged">
+                           IsReadOnly="True" SelectionMode="Single" CurrentCellChanged="MainDataGrid_CurrentCellChanged" BorderBrush="#0FFFFFFF" BorderThickness="1" GridLinesVisibility="All">
+            <controls:DataGrid.CellStyle>
+                <Style TargetType="controls:DataGridCell">
+                    <Setter Property="FontFamily" Value="Segoe UI" />
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="Margin" Value="2,0,0,0" />
+                    <Setter Property="BorderThickness" Value="4" />
+                </Style>
+            </controls:DataGrid.CellStyle>
+            <controls:DataGrid.ColumnHeaderStyle>
+                <Style TargetType="wctprimitives:DataGridColumnHeader">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="wctprimitives:DataGridColumnHeader">
+                                <ContentPresenter Background="#0FFFFFFF" Padding="10,8,10,8"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </controls:DataGrid.ColumnHeaderStyle>
             <controls:DataGrid.Columns>
                 <controls:DataGridTemplateColumn Header="Name">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <TextBlock Padding="5,0,5,0" Text="{Binding Name}" />
+                                <TextBlock Padding="10,0,10,0" Text="{Binding Name}" />
                             </StackPanel>
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
@@ -35,7 +55,7 @@
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <TextBlock Padding="5,0,5,0" Text="{Binding Tag}" />
+                                <TextBlock Padding="10,0,10,0" Text="{Binding Tag}" />
                             </StackPanel>
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
@@ -44,7 +64,7 @@
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <TextBlock Padding="5,0,5,0" Text="{Binding User}" />
+                                <TextBlock Padding="10,0,10,0" Text="{Binding User}" />
                             </StackPanel>
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
@@ -52,7 +72,7 @@
                 <controls:DataGridTemplateColumn Header="Password">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left"> 
                                 <TextBlock Padding="5,0,5,0" Text="{Binding Password}" />
                             </StackPanel>
                         </DataTemplate>
