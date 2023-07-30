@@ -29,7 +29,8 @@ namespace Keybind
     {
         [DllImport("Shcore.dll", SetLastError = true)]
         internal static extern int GetDpiForMonitor(IntPtr hmonitor, Monitor_DPI_Type dpiType, out uint dpiX, out uint dpiY);
-        private AppWindow _mainAppWindow;
+        private readonly AppWindow _mainAppWindow;
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -53,6 +54,10 @@ namespace Keybind
             }
             NavigateDefault(typeof(MainView), null);
             _mainAppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
+            _mainAppWindow.Destroying += (AppWindow u, object o) =>
+            {
+                Services.CollectionManagement.SaveListToDisk();
+            };
         }
 
         private void TitleBarSizeChanged(object sender, SizeChangedEventArgs e)
@@ -137,14 +142,14 @@ namespace Keybind
             return AppWindow.GetFromWindowId(wndId);
         }
 
-        private void NavigateDefault(Type page, object param)
+        public void NavigateDefault(Type page, object param)
         {
             MainFrame.Navigate(page, param, new DrillInNavigationTransitionInfo());
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigateDefault(typeof(AddNewPasswordModal), null);
+            NavigateDefault(typeof(AddView), null);
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
@@ -159,7 +164,7 @@ namespace Keybind
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigateDefault(typeof(EditView), null);
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

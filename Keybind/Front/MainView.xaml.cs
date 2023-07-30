@@ -32,10 +32,6 @@ namespace Keybind.Front
         {
             this.InitializeComponent();
 
-            CollectionManagement.Add(new Service("Facebook", "Agus", "fmjoriejy483"));
-            CollectionManagement.Add(new Service("Facebook", "Agustin", "fmjoriejy483"));
-            CollectionManagement.SaveListToDisk();
-
             MainViewPage = this;
         }
 

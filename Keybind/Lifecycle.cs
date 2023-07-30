@@ -40,6 +40,15 @@ public static class Lifecycle
             Services.CollectionManagement.GenerateServiceCollection();
         }
     }
+
+    public static string CreateRandomString(int length = 12)
+    {
+        byte[] bytes = new byte[length];
+        RandomNumberGenerator rng = RandomNumberGenerator.Create();
+        rng.GetBytes(bytes);
+
+        return Convert.ToBase64String(bytes);
+    }
 }
 
     

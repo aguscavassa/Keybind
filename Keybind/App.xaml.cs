@@ -5,21 +5,36 @@ using Microsoft.UI.Xaml.Media.Animation;
 using Keybind.Front;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Composition.SystemBackdrops;
+using System.IO;
 
 namespace Keybind
 {
     public partial class App : Application
     {
-        private Window m_window;
+        private static MainWindow m_window;
         public App()
         {
             this.InitializeComponent();
         }
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
-            m_window.Title = "Keybind";
+            m_window = new MainWindow
+            {
+                Title = "Keybind"
+            };
             m_window.Activate();
+            try
+            {
+                Services.CollectionManagement.LoadListFromDisk();
+            } catch (FileNotFoundException)
+            {
+                Services.CollectionManagement.GenerateServiceCollection();
+            }
+        }
+
+        public static MainWindow GetMainWindow()
+        {
+            return m_window;
         }
     }
 }

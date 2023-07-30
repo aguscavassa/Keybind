@@ -16,7 +16,6 @@ namespace Keybind.Services
         public string Tag { get; set; }
         public string User { get; set; }
         public string Password { get; set; }
-        private bool isEditing = false;
 
         public Service backupData;
 
@@ -93,6 +92,16 @@ namespace Keybind.Services
             byte[] buffer = ProtectedData.Unprotect(protectedBuffer, null, DataProtectionScope.CurrentUser);
             ServiceCollection = JsonSerializer.Deserialize<List<Service>>(buffer);
             return ServiceCollection;
+        }
+
+        public static List<string> GetTagList()
+        {
+            List<string> list = new List<string>();
+            foreach (Service service in ServiceCollection)
+            {
+                if (!list.Contains(service.Tag)) list.Add(service.Tag);
+            }
+            return list;
         }
     }
 }
