@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
@@ -10,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace Keybind.Services
 {
-    public class Service : IEquatable<Service>
+    public class Service : IEquatable<Service>, IDisposable
     {
         public string Name { get; set; }
         public string Tag { get; set; }
         public string User { get; set; }
         public string Password { get; set; }
 
-        public Service backupData;
+        private bool disposed;
 
         public Service(string Name, string User, string Password, string Tag = "None")
         {
@@ -44,6 +45,11 @@ namespace Keybind.Services
             if (other == null) return false;
             return (this.Name.Equals(other.Name) && this.User.Equals(other.User));
         }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
+        }
     }
 
 
@@ -67,6 +73,14 @@ namespace Keybind.Services
             {
                 ServiceCollection.Add(service);
             }
+        }
+
+        public static void Modify(Service service, Service newService)
+        {
+            Service helper = ServiceCollection.Find(x => (x.Name == service.Name) && (x.User == service.User) && (x.Password == service.Password));
+            helper.User = newService.User;
+            helper.Password = newService.Password;
+            helper.Name = newService.Name;
         }
 
         public static bool SaveListToDisk()

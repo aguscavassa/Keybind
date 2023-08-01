@@ -21,9 +21,7 @@ using Windows.Security.Cryptography.Core;
 
 namespace Keybind.Front
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+    // TODO: Rewrite this class and the EditView class to minimize repetition using user controls.
     public sealed partial class AddView : Page
     {
         private List<string> TagList;
@@ -38,11 +36,11 @@ namespace Keybind.Front
             App.GetMainWindow().NavigateDefault(typeof(MainView), null);
         }
 
-        private void AddButton_Click(object sender, RoutedEventArgs e)
+        private void AcceptButton_Click(object sender, RoutedEventArgs e)
         {
             if (ServiceNameField.Text == "" || UserField.Text == "" || PasswordField.Password == "")
             {
-                ToolTipService.SetToolTip(AddButton, "One (or more) of the required fields are empty.");
+                ToolTipService.SetToolTip(AcceptButton, "One (or more) of the required fields are empty.");
                 AcceptSymbol.Symbol = Symbol.Important;
                 return;
             }

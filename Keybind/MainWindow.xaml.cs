@@ -56,6 +56,7 @@ namespace Keybind
             _mainAppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
             _mainAppWindow.Destroying += (AppWindow u, object o) =>
             {
+                Services.CollectionManagement.ServiceCollection = MainView.MainViewPage.MainDataGrid.ItemsSource.Cast<Services.Service>().ToList();
                 Services.CollectionManagement.SaveListToDisk();
             };
         }
@@ -77,6 +78,8 @@ namespace Keybind
             RightPaddingCol.Width = new GridLength(_mainWindow.TitleBar.RightInset / scale);
             LeftPaddingCol.Width = new GridLength(_mainWindow.TitleBar.LeftInset / scale);
 
+            PaddingCol.Width = new GridLength(_mainWindow.TitleBar.RightInset - (IconCol.ActualWidth + NameCol.ActualWidth) / scale);
+
             List<Windows.Graphics.RectInt32> dragRectsList = new();
 
             Windows.Graphics.RectInt32 dragRectL;
@@ -85,23 +88,20 @@ namespace Keybind
             dragRectL.Height = (int)(TitleBar.ActualHeight * scale);
             dragRectL.Width = (int)((IconCol.ActualWidth
                                     + NameCol.ActualWidth
-                                    + LeftDraggingCol.ActualWidth) * scale);
+                                    + LeftDraggingCol.ActualWidth
+                                    + PaddingCol.ActualWidth) * scale);
             dragRectsList.Add(dragRectL);
 
             Windows.Graphics.RectInt32 dragRectR;
             dragRectR.X = (int)((LeftPaddingCol.ActualWidth
                                 + IconCol.ActualWidth
-                                + TitleText.ActualWidth
-                                + LeftDraggingCol.ActualWidth
-                                + ExtraSpaceCol.ActualWidth
-                                + HomeCol.ActualWidth
-                                + AddCol.ActualWidth
-                                + FindCol.ActualWidth
-                                + EditCol.ActualWidth
-                                + SettingsCol.ActualWidth) * scale);
+                                + NameCol.ActualWidth
+                                + ContentCol.ActualWidth
+                                + PaddingCol.ActualWidth
+                                + LeftDraggingCol.ActualWidth) * scale);
             dragRectR.Y = 0;
             dragRectR.Height = (int)(TitleBar.ActualHeight * scale);
-            dragRectR.Width = (int)((RightDraggingCol.ActualWidth - ExtraSpaceCol.ActualWidth) * scale);
+            dragRectR.Width = (int)((RightDraggingCol.ActualWidth) * scale);
             dragRectsList.Add(dragRectR);
 
             Windows.Graphics.RectInt32[] dragRects = dragRectsList.ToArray();
@@ -144,7 +144,10 @@ namespace Keybind
 
         public void NavigateDefault(Type page, object param)
         {
-            MainFrame.Navigate(page, param, new DrillInNavigationTransitionInfo());
+            if (page != MainFrame.CurrentSourcePageType)
+            {
+                MainFrame.Navigate(page, param, new DrillInNavigationTransitionInfo());
+            }
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -165,6 +168,7 @@ namespace Keybind
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             NavigateDefault(typeof(EditView), null);
+            EditView.EditViewPage.EnteredEdit();
         }
 
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)

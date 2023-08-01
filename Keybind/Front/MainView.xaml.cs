@@ -28,6 +28,7 @@ namespace Keybind.Front
     public sealed partial class MainView : Page
     {
         public static MainView MainViewPage;
+        public static ObservableCollection<Service> currentServicesCollection;
         public MainView()
         {
             this.InitializeComponent();
@@ -35,15 +36,122 @@ namespace Keybind.Front
             MainViewPage = this;
         }
 
-        private void MainDataGrid_CurrentCellChanged(object sender, EventArgs e)
-        {
-        }
-
         public void SearchChanged(AutoSuggestBox searchBox)
         {
-            MainDataGrid.ItemsSource = new ObservableCollection<Service>(from item in CollectionManagement.ServiceCollection
-                                                                         where item.Name.Contains(searchBox.Text) || item.User.Contains(searchBox.Text) || item.Tag.Contains(searchBox.Text)
-                                                                         select item);
+
+            MainDataGrid.ItemsSource = CollectionManagement.ServiceCollection.FindAll(item => item.Name.Contains(searchBox.Text, StringComparison.InvariantCultureIgnoreCase) || item.User.Contains(searchBox.Text, StringComparison.InvariantCultureIgnoreCase) || item.Tag.Contains(searchBox.Text, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        private void MainDataGrid_Sorting(object sender, DataGridColumnEventArgs e)
+        {
+            IOrderedEnumerable<Service> CollectionHelper;
+            if (currentServicesCollection == null)
+            {
+                currentServicesCollection = new ObservableCollection<Service>();
+            }
+            currentServicesCollection.Clear();
+            switch (e.Column.Header.ToString())
+            {
+                case "Name":
+                    if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
+                    {
+                        CollectionHelper = CollectionManagement.ServiceCollection.OrderBy(x  => x.Name);
+                        foreach (Service service in CollectionHelper)
+                        {
+                            currentServicesCollection.Add(service);
+                        }
+                        MainDataGrid.ItemsSource = currentServicesCollection;
+                        e.Column.SortDirection = DataGridSortDirection.Ascending;
+                    }
+                    else
+                    {
+                        CollectionHelper = CollectionManagement.ServiceCollection.OrderByDescending(x => x.Name);
+                        foreach (Service service in CollectionHelper)
+                        {
+                            currentServicesCollection.Add(service);
+                        }
+                        MainDataGrid.ItemsSource = currentServicesCollection;
+                        e.Column.SortDirection = DataGridSortDirection.Descending;
+                    }
+                    break;
+                case "Tag":
+                    if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
+                    {
+                        CollectionHelper = CollectionManagement.ServiceCollection.OrderBy(x => x.Tag);
+                        foreach (Service service in CollectionHelper)
+                        {
+                            currentServicesCollection.Add(service);
+                        }
+                        MainDataGrid.ItemsSource = currentServicesCollection;
+                        e.Column.SortDirection = DataGridSortDirection.Ascending;
+                    }
+                    else
+                    {
+                        CollectionHelper = CollectionManagement.ServiceCollection.OrderByDescending(x => x.Tag);
+                        foreach (Service service in CollectionHelper)
+                        {
+                            currentServicesCollection.Add(service);
+                        }
+                        MainDataGrid.ItemsSource = currentServicesCollection;
+                        e.Column.SortDirection = DataGridSortDirection.Descending;
+                    }
+                    break;
+                case "User Name":
+                    if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
+                    {
+                        CollectionHelper = CollectionManagement.ServiceCollection.OrderBy(x => x.User);
+                        foreach (Service service in CollectionHelper)
+                        {
+                            currentServicesCollection.Add(service);
+                        }
+                        MainDataGrid.ItemsSource = currentServicesCollection;
+                        e.Column.SortDirection = DataGridSortDirection.Ascending;
+                    }
+                    else
+                    {
+                        CollectionHelper = CollectionManagement.ServiceCollection.OrderByDescending(x => x.User);
+                        foreach (Service service in CollectionHelper)
+                        {
+                            currentServicesCollection.Add(service);
+                        }
+                        MainDataGrid.ItemsSource = currentServicesCollection;
+                        e.Column.SortDirection = DataGridSortDirection.Descending;
+                    }
+                    break;
+                case "Password":
+                    if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
+                    {
+                        CollectionHelper = CollectionManagement.ServiceCollection.OrderBy(x => x.Password);
+                        foreach (Service service in CollectionHelper)
+                        {
+                            currentServicesCollection.Add(service);
+                        }
+                        MainDataGrid.ItemsSource = currentServicesCollection;
+                        e.Column.SortDirection = DataGridSortDirection.Ascending;
+                    }
+                    else
+                    {
+                        CollectionHelper = CollectionManagement.ServiceCollection.OrderByDescending(x => x.Password);
+                        foreach (Service service in CollectionHelper)
+                        {
+                            currentServicesCollection.Add(service);
+                        }
+                        MainDataGrid.ItemsSource = currentServicesCollection;
+                        e.Column.SortDirection = DataGridSortDirection.Descending;
+                    }
+                    break;
+                default:
+                break;
+            }
+            CollectionHelper = null;
+
+            foreach (var col in MainDataGrid.Columns)
+            {
+                if (e.Column.Header.ToString() != col.Header.ToString())
+                {
+                    col.SortDirection = null;
+                }
+            }
         }
     }
 }

@@ -9,9 +9,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls" 
-    xmlns:wctprimitives="using:CommunityToolkit.WinUI.UI.Controls.Primitives">
+    xmlns:wctprimitives="using:CommunityToolkit.WinUI.UI.Controls.Primitives"
+    NavigationCacheMode="Enabled">
 
-    <StackPanel CornerRadius="8" Margin="48,12,48,12" >
+    <StackPanel CornerRadius="8" Margin="48,12,48,12">
         <StackPanel.Style>
             <Style TargetType="StackPanel">
                 <Setter Property="Background" Value="#0FFFFFFF" />
@@ -21,7 +22,11 @@
                            Margin="12"
                            ItemsSource="{x:Bind Services:CollectionManagement.ServiceCollection}"
                            AutoGenerateColumns="False"
-                           IsReadOnly="True" SelectionMode="Single" CurrentCellChanged="MainDataGrid_CurrentCellChanged" BorderBrush="#0FFFFFFF" BorderThickness="1" GridLinesVisibility="All">
+                           IsReadOnly="True" CanUserSortColumns="True" Sorting="MainDataGrid_Sorting"
+                           SelectionMode="Single" 
+                           BorderBrush="#0FFFFFFF" BorderThickness="1" 
+                           GridLinesVisibility="All" RelativePanel.AlignHorizontalCenterWithPanel="True" 
+                           MinHeight="150" MaxHeight="300">
             <controls:DataGrid.CellStyle>
                 <Style TargetType="controls:DataGridCell">
                     <Setter Property="FontFamily" Value="Segoe UI" />
@@ -39,10 +44,11 @@
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
+                    <Setter Property="Background" Value="#0FFFFFFF" />
                 </Style>
             </controls:DataGrid.ColumnHeaderStyle>
             <controls:DataGrid.Columns>
-                <controls:DataGridTemplateColumn Header="Name">
+                <controls:DataGridTemplateColumn Header="Name" Tag="Name">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
@@ -51,7 +57,7 @@
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>
-                <controls:DataGridTemplateColumn Header="Tag">
+                <controls:DataGridTemplateColumn Header="Tag" Tag="Tag">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
@@ -60,7 +66,7 @@
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>
-                <controls:DataGridTemplateColumn Header="User Name">
+                <controls:DataGridTemplateColumn Header="User Name" Tag="User Name">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
@@ -69,7 +75,7 @@
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>
-                <controls:DataGridTemplateColumn Header="Password">
+                <controls:DataGridTemplateColumn Header="Password" Tag="Password">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left"> 
