@@ -12,6 +12,30 @@
     xmlns:wctprimitives="using:CommunityToolkit.WinUI.UI.Controls.Primitives"
     NavigationCacheMode="Enabled">
 
+    <Page.Resources>
+        <MenuFlyout x:Key="Context" Opening="MenuFlyout_Opening">
+            <MenuFlyoutItem Text="Copy" Icon="Copy" Tag="copy" Click="MenuFlyoutItem_Click">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="C" Modifiers="Control" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+        </MenuFlyout>
+
+        <MenuFlyout x:Key="PasswordContext" Opening="MenuFlyout_Opening">
+            <MenuFlyoutItem Text="Show" Tag="show" Click="PasswordMenuFlyoutItem_Click">
+                <MenuFlyoutItem.Icon>
+                    <FontIcon Glyph="&#xE7B3;"/>
+                </MenuFlyoutItem.Icon>
+            </MenuFlyoutItem>
+            <MenuFlyoutSeparator/>
+            <MenuFlyoutItem Text="Copy" Icon="Copy" Tag="copy" Click="PasswordMenuFlyoutItem_Click">
+                <MenuFlyoutItem.KeyboardAccelerators>
+                    <KeyboardAccelerator Key="C" Modifiers="Control" />
+                </MenuFlyoutItem.KeyboardAccelerators>
+            </MenuFlyoutItem>
+        </MenuFlyout>
+    </Page.Resources>
+
     <StackPanel CornerRadius="8" Margin="48,12,48,12">
         <StackPanel.Style>
             <Style TargetType="StackPanel">
@@ -26,7 +50,8 @@
                            SelectionMode="Single" 
                            BorderBrush="#0FFFFFFF" BorderThickness="1" 
                            GridLinesVisibility="All" RelativePanel.AlignHorizontalCenterWithPanel="True" 
-                           MinHeight="150" MaxHeight="300">
+                           MinHeight="150" MaxHeight="300"
+                           SelectionChanged="MainDataGrid_SelectionChanged">
             <controls:DataGrid.CellStyle>
                 <Style TargetType="controls:DataGridCell">
                     <Setter Property="FontFamily" Value="Segoe UI" />
@@ -51,36 +76,36 @@
                 <controls:DataGridTemplateColumn Header="Name" Tag="Name">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <TextBlock Padding="10,0,10,0" Text="{Binding Name}" />
-                            </StackPanel>
+                            <Grid ContextFlyout="{StaticResource Context}">
+                                <TextBlock Padding="10,10,10,10" Text="{Binding Name}" />
+                            </Grid>
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>
                 <controls:DataGridTemplateColumn Header="Tag" Tag="Tag">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <TextBlock Padding="10,0,10,0" Text="{Binding Tag}" />
-                            </StackPanel>
+                            <Grid ContextFlyout="{StaticResource Context}">
+                                <TextBlock Padding="10,10,10,10" Text="{Binding Tag}" />
+                            </Grid>
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>
                 <controls:DataGridTemplateColumn Header="User Name" Tag="User Name">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <TextBlock Padding="10,0,10,0" Text="{Binding User}" />
-                            </StackPanel>
+                            <Grid ContextFlyout="{StaticResource Context}">
+                                <TextBlock Padding="10,10,10,10" Text="{Binding User}" />
+                            </Grid>
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>
                 <controls:DataGridTemplateColumn Header="Password" Tag="Password">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left"> 
-                                <TextBlock Padding="5,0,5,0" Text="{Binding Password}" />
-                            </StackPanel>
+                            <Grid ContextFlyout="{StaticResource PasswordContext}">
+                                <TextBlock x:Name="PasswordTextField" Padding="10,10,10,10" Text="{Binding MaskedPassword}" />
+                            </Grid>
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>

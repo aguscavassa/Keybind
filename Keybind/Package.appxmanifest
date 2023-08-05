@@ -10,7 +10,7 @@
   <Identity
     Name="cdc988eb-086a-424a-9de5-948ba6864b72"
     Publisher="CN=reecy"
-    Version="0.1.0.0" />
+    Version="0.2.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="cdc988eb-086a-424a-9de5-948ba6864b72" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -26,7 +26,8 @@
   </Dependencies>
 
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="en-US"/>
+    <Resource Language="es-AR"/>
   </Resources>
 
   <Applications>

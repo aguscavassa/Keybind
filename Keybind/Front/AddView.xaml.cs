@@ -48,9 +48,11 @@ namespace Keybind.Front
             if (TagField.Text == "")
             {
                 Services.CollectionManagement.Add(new Services.Service(ServiceNameField.Text, UserField.Text, PasswordField.Password));
+                MainView.RefreshGrid();
             } else
             {
                 Services.CollectionManagement.Add(new Services.Service(ServiceNameField.Text, UserField.Text, PasswordField.Password, TagField.Text));
+                MainView.RefreshGrid();
             }
 
             App.GetMainWindow().NavigateDefault(typeof(MainView), null);

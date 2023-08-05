@@ -22,6 +22,7 @@ using Windows.UI;
 using System.Runtime.InteropServices;
 using Windows.UI.ViewManagement;
 using System.Diagnostics;
+using Keybind.Services;
 
 namespace Keybind
 {
@@ -174,6 +175,21 @@ namespace Keybind
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
             MainView.MainViewPage.SearchChanged(sender);
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            CollectionManagement.Delete((Service)MainView.MainViewPage.MainDataGrid.SelectedItem);
+            MainView.RefreshGrid();
+        }
+
+        // Somehow, the DeleteButton does not get enabled in the MainDataGrid_SelectionChanged method, so this is a bandaid fix until I can find a solution.
+        private void EditButton_IsEnabledChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.OldValue == false)
+            {
+                DeleteButton.IsEnabled = true;
+            }
         }
     }
 }

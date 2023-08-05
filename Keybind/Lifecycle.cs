@@ -7,6 +7,9 @@ using System.Text.Json.Serialization;
 using System.Security.Cryptography;
 using Keybind.Front;
 using System.Collections.Generic;
+using Windows.ApplicationModel.DataTransfer;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml;
 
 namespace Keybind;
 
@@ -48,6 +51,35 @@ public static class Lifecycle
         rng.GetBytes(bytes);
 
         return Convert.ToBase64String(bytes);
+    }
+
+    public static void CopyToClipboard(string str)
+    {
+        var package = new DataPackage();
+        package.SetText(str);
+        Clipboard.SetContent(package);
+    }
+
+    public static T GetWindowItem<T>(this UIElement parent, Type type, string name) where T : FrameworkElement
+    {
+        if (parent == null) return null;
+
+        if (parent.GetType() == type && ((T)parent).Name == name)
+        {
+            return (T)parent;
+        }
+        T result = null;
+        int j = VisualTreeHelper.GetChildrenCount(parent);
+        for (int i = 0; i < j; i++)
+        {
+            UIElement child = (UIElement)VisualTreeHelper.GetChild(parent, i);
+            if (GetWindowItem<T>(child, type, name) != null)
+            {
+                result = GetWindowItem<T>(child, type, name);
+                break;
+            }
+        }
+        return result;
     }
 }
 

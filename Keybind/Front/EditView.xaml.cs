@@ -49,6 +49,7 @@ namespace Keybind.Front
             }
             
             CollectionManagement.Modify(selectedService, new Service(ServiceNameField.Text, UserField.Text, PasswordField.Password));
+            MainView.RefreshGrid();
 
             App.GetMainWindow().NavigateDefault(typeof(MainView), null);
         }

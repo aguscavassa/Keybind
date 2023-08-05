@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Keybind.Front;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -7,25 +8,28 @@ using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Keybind.Services
 {
-    public class Service : IEquatable<Service>, IDisposable
+    public class Service : IEquatable<Service>
     {
         public string Name { get; set; }
         public string Tag { get; set; }
         public string User { get; set; }
         public string Password { get; set; }
+        public string MaskedPassword { get; set; }
 
-        private bool disposed;
 
         public Service(string Name, string User, string Password, string Tag = "None")
         {
+            Regex mask = new(".");
             this.Name = Name;
             this.User = User;
             this.Password = Password;
             this.Tag = Tag;
+            MaskedPassword = mask.Replace(Password, "*");
         }
         public override string ToString()
         {
@@ -46,10 +50,6 @@ namespace Keybind.Services
             return (this.Name.Equals(other.Name) && this.User.Equals(other.User));
         }
 
-        public void Dispose()
-        {
-            GC.SuppressFinalize(this);
-        }
     }
 
 
@@ -81,6 +81,17 @@ namespace Keybind.Services
             helper.User = newService.User;
             helper.Password = newService.Password;
             helper.Name = newService.Name;
+        }
+
+        public static bool Delete(Service service)
+        {
+            if (ServiceCollection.Contains(service))
+            {
+                ServiceCollection.Remove(service);
+                return true;
+            }
+            else return false;
+
         }
 
         public static bool SaveListToDisk()

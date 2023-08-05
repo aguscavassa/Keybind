@@ -6,6 +6,9 @@ using Keybind.Front;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Composition.SystemBackdrops;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+using System.Diagnostics;
 
 namespace Keybind
 {
