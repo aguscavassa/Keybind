@@ -29,16 +29,22 @@
             <TextBlock x:Name="TitleText" Text="Keybind" Grid.Column="2" VerticalAlignment="Center" Margin="8,0,0,0"/>
 
             <StackPanel Orientation="Horizontal" Grid.Column="5">
-                <Button x:Name="HomeButton" Height="36"  Margin="0,10,8,0" Click="HomeButton_Click" ToolTipService.ToolTip="Home">
+                <Button x:Name="HomeButton" Height="36"  Margin="0,10,8,0" Click="HomeButton_Click">
+                    <ToolTipService.ToolTip>
+                        <TextBlock x:Uid="TooltipHomeButton"/>
+                    </ToolTipService.ToolTip>
                     <Viewbox Height="15" Width="15" Margin="0,0,0,0">
                         <SymbolIcon Symbol="Home"/>
                     </Viewbox>
                 </Button>
 
-                <AutoSuggestBox QueryIcon="Find" PlaceholderText="Search by tag, name or user..."
+                <AutoSuggestBox QueryIcon="Find" PlaceholderText="Search by tag, name or user..." x:Uid="SearchBox"
                         Width="380" Height="36" VerticalAlignment="Center" Margin="8,10,8,0" TextChanged="AutoSuggestBox_TextChanged"/>
 
-                <Button x:Name="SettingsButton" Click="SettingsButton_Click" Height="36" Margin="8,10,0,0" ToolTipService.ToolTip="Settings">
+                <Button x:Name="SettingsButton" Click="SettingsButton_Click" Height="36" Margin="8,10,0,0">
+                    <ToolTipService.ToolTip>
+                        <TextBlock x:Uid="TooltipSettingsButton" />
+                    </ToolTipService.ToolTip>
                     <StackPanel Orientation="Horizontal">
                         <Viewbox MaxHeight="15" MaxWidth="15" Margin="0,0,0,0">
                             <SymbolIcon Symbol="Setting" />
@@ -55,28 +61,37 @@
                 <ColumnDefinition x:Name="DeleteCol" Width="Auto" />
                 <ColumnDefinition x:Name="RightPaddingCol2" Width="*" />
             </Grid.ColumnDefinitions>
-            <Button x:Name="AddButton" Height="36" Margin="0,10,0,0" Click="AddButton_Click" ToolTipService.ToolTip="Add..." Grid.Column="1">
+            <Button x:Name="AddButton" Height="36" Margin="0,10,0,0" Click="AddButton_Click" Grid.Column="1">
+                <ToolTipService.ToolTip>
+                    <TextBlock x:Uid="TooltipAddButton" />
+                </ToolTipService.ToolTip>
                 <StackPanel Orientation="Horizontal">
                     <Viewbox Height="15" Width="15" Margin="0,0,8,0">
                         <SymbolIcon Symbol="Add"/>
                     </Viewbox>
-                    <TextBlock Text="Add"/>
+                    <TextBlock x:Uid="AddButton"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="EditButton" Height="36" Margin="10,10,10,0" Click="EditButton_Click" ToolTipService.ToolTip="Edit" IsEnabled="False" IsEnabledChanged="EditButton_IsEnabledChanged" Grid.Column="2">
+            <Button x:Name="EditButton" Height="36" Margin="10,10,10,0" Click="EditButton_Click" IsEnabled="False" IsEnabledChanged="EditButton_IsEnabledChanged" Grid.Column="2">
+                <ToolTipService.ToolTip>
+                    <TextBlock x:Uid="TooltipEditButton" />
+                </ToolTipService.ToolTip>
                 <StackPanel Orientation="Horizontal">
                     <Viewbox Height="15" Width="15" Margin="0,0,8,0">
                         <SymbolIcon Symbol="Edit"/>
                     </Viewbox>
-                    <TextBlock Text="Edit"/>
+                    <TextBlock x:Uid="EditButton"/>
                 </StackPanel>
             </Button>
-            <Button x:Name="DeleteButton" Height="36" Margin="0,10,0,0" Click="DeleteButton_Click" ToolTipService.ToolTip="Delete" IsEnabled="False" Grid.Column="3">
+            <Button x:Name="DeleteButton" Height="36" Margin="0,10,0,0" Click="DeleteButton_Click" IsEnabled="False" Grid.Column="3">
+                <ToolTipService.ToolTip>
+                    <TextBlock x:Uid="TooltipDeleteButton" />
+                </ToolTipService.ToolTip>
                 <StackPanel Orientation="Horizontal">
                     <Viewbox Height="15" Width="15" Margin="0,0,8,0">
                         <SymbolIcon Symbol="Delete"/>
                     </Viewbox>
-                    <TextBlock Text="Delete"/>
+                    <TextBlock x:Uid="DeleteButton"/>
                 </StackPanel>
             </Button>
         </Grid>

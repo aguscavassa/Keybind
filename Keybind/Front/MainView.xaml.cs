@@ -52,7 +52,7 @@ namespace Keybind.Front
                 currentServicesCollection = new ObservableCollection<Service>();
             }
             currentServicesCollection.Clear();
-            switch (e.Column.Header.ToString())
+            switch (e.Column.Tag.ToString())
             {
                 case "Name":
                     if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
@@ -149,7 +149,7 @@ namespace Keybind.Front
 
             foreach (var col in MainDataGrid.Columns)
             {
-                if (e.Column.Header.ToString() != col.Header.ToString())
+                if (e.Column.Tag.ToString() != col.Tag.ToString())
                 {
                     col.SortDirection = null;
                 }

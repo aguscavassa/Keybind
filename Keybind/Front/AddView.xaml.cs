@@ -40,7 +40,7 @@ namespace Keybind.Front
         {
             if (ServiceNameField.Text == "" || UserField.Text == "" || PasswordField.Password == "")
             {
-                ToolTipService.SetToolTip(AcceptButton, "One (or more) of the required fields are empty.");
+                AcceptTooltipText.Text = Lifecycle.GetLocalizedString("MissingFieldsError");
                 AcceptSymbol.Symbol = Symbol.Important;
                 return;
             }
@@ -77,7 +77,7 @@ namespace Keybind.Front
                 }
                 if (itemList.Count == 0)
                 {
-                    itemList.Add("No tags found.");
+                    itemList.Add(Lifecycle.GetLocalizedString("NoTagsInfo"));
                 }
                 sender.ItemsSource = itemList;
             }

@@ -10,11 +10,14 @@ using System.Collections.Generic;
 using Windows.ApplicationModel.DataTransfer;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml;
+using Microsoft.Windows.ApplicationModel.Resources;
+using Microsoft.VisualBasic;
 
 namespace Keybind;
 
 public static class Lifecycle
 {
+    private static ResourceManager resManager;
     private static string userDir;
     private static string userUuid;
     public static string UserDir { get => userDir; set => userDir = value; }
@@ -23,6 +26,7 @@ public static class Lifecycle
 
     public static void Init()
     {
+        resManager = new ResourceManager();
         UserDir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Data";
         Directory.CreateDirectory(UserDir);
         if (File.Exists(UserDir + "\\user.dat"))
@@ -80,6 +84,11 @@ public static class Lifecycle
             }
         }
         return result;
+    }
+
+    public static string GetLocalizedString(string value)
+    {
+        return resManager.MainResourceMap.GetSubtree("Resources").GetValue(value).ValueAsString;
     }
 }
 

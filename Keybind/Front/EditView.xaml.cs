@@ -37,13 +37,13 @@ namespace Keybind.Front
         {
             if (selectedService == null)
             {
-                ToolTipService.SetToolTip(AcceptButton, "You haven't selected a service.");
+                AcceptTooltipText.Text = Lifecycle.GetLocalizedString("NoSelectionError");
                 AcceptSymbol.Symbol = Symbol.Important;
                 return;
             }
             if (ServiceNameField.Text == "" || UserField.Text == "" || PasswordField.Password == "")
             {
-                ToolTipService.SetToolTip(AcceptButton, "One (or more) of the required fields are empty.");
+                AcceptTooltipText.Text = Lifecycle.GetLocalizedString("MissingFieldsError");
                 AcceptSymbol.Symbol = Symbol.Important;
                 return;
             }
@@ -83,7 +83,7 @@ namespace Keybind.Front
                 }
                 if (itemList.Count == 0)
                 {
-                    itemList.Add("No tags found.");
+                    itemList.Add(Lifecycle.GetLocalizedString("NoTagsInfo"));
                 }
                 sender.ItemsSource = itemList;
             }

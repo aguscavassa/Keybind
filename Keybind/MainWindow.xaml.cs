@@ -23,6 +23,7 @@ using System.Runtime.InteropServices;
 using Windows.UI.ViewManagement;
 using System.Diagnostics;
 using Keybind.Services;
+using Windows.ApplicationModel.Resources;
 
 namespace Keybind
 {

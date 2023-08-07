@@ -14,7 +14,7 @@
 
     <Page.Resources>
         <MenuFlyout x:Key="Context" Opening="MenuFlyout_Opening">
-            <MenuFlyoutItem Text="Copy" Icon="Copy" Tag="copy" Click="MenuFlyoutItem_Click">
+            <MenuFlyoutItem x:Uid="CopyFlyout" Icon="Copy" Tag="copy" Click="MenuFlyoutItem_Click">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="C" Modifiers="Control" />
                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -22,13 +22,13 @@
         </MenuFlyout>
 
         <MenuFlyout x:Key="PasswordContext" Opening="MenuFlyout_Opening">
-            <MenuFlyoutItem Text="Show" Tag="show" Click="PasswordMenuFlyoutItem_Click">
+            <MenuFlyoutItem x:Uid="ShowPassFlyout" Tag="show" Click="PasswordMenuFlyoutItem_Click">
                 <MenuFlyoutItem.Icon>
                     <FontIcon Glyph="&#xE7B3;"/>
                 </MenuFlyoutItem.Icon>
             </MenuFlyoutItem>
             <MenuFlyoutSeparator/>
-            <MenuFlyoutItem Text="Copy" Icon="Copy" Tag="copy" Click="PasswordMenuFlyoutItem_Click">
+            <MenuFlyoutItem x:Uid="CopyFlyout" Icon="Copy" Tag="copy" Click="PasswordMenuFlyoutItem_Click">
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="C" Modifiers="Control" />
                 </MenuFlyoutItem.KeyboardAccelerators>
@@ -73,7 +73,7 @@
                 </Style>
             </controls:DataGrid.ColumnHeaderStyle>
             <controls:DataGrid.Columns>
-                <controls:DataGridTemplateColumn Header="Name" Tag="Name">
+                <controls:DataGridTemplateColumn x:Uid="ServiceNameHeader" Tag="Name">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid ContextFlyout="{StaticResource Context}">
@@ -82,7 +82,7 @@
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>
-                <controls:DataGridTemplateColumn Header="Tag" Tag="Tag">
+                <controls:DataGridTemplateColumn x:Uid="TagHeader" Tag="Tag" >
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid ContextFlyout="{StaticResource Context}">
@@ -91,7 +91,7 @@
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>
-                <controls:DataGridTemplateColumn Header="User Name" Tag="User Name">
+                <controls:DataGridTemplateColumn x:Uid="IdentifierHeader" Tag="User Name">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid ContextFlyout="{StaticResource Context}">
@@ -100,7 +100,7 @@
                         </DataTemplate>
                     </controls:DataGridTemplateColumn.CellTemplate>
                 </controls:DataGridTemplateColumn>
-                <controls:DataGridTemplateColumn Header="Password" Tag="Password">
+                <controls:DataGridTemplateColumn x:Uid="PasswordHeader" Tag="Password">
                     <controls:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid ContextFlyout="{StaticResource PasswordContext}">
