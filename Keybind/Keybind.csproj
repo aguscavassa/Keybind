@@ -13,10 +13,11 @@
     <DefaultLanguage>en</DefaultLanguage>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Assets\github-mark-white.png" />
     <None Remove="Front\AddView.xaml" />
     <None Remove="Front\EditView.xaml" />
     <None Remove="Front\MainView.xaml" />
-    <None Remove="Front\SettingsModal.xaml" />
+    <None Remove="Front\SettingsView.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,7 +52,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Front\SettingsModal.xaml">
+    <Page Update="Front\SettingsView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

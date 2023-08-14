@@ -129,11 +129,17 @@
   <data name="AddHeader.Text" xml:space="preserve">
     <value>Add...</value>
   </data>
+  <data name="ApplyButton.Text" xml:space="preserve">
+    <value>Apply</value>
+  </data>
   <data name="CancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
   <data name="CopyFlyout.Text" xml:space="preserve">
     <value>Copy</value>
+  </data>
+  <data name="DeleteAllButton.Text" xml:space="preserve">
+    <value>Delete all saved services</value>
   </data>
   <data name="DeleteButton.Text" xml:space="preserve">
     <value>Delete...</value>
@@ -144,8 +150,15 @@
   <data name="EditHeader.Text" xml:space="preserve">
     <value>Edit...</value>
   </data>
+  <data name="HidePassFlyout" xml:space="preserve">
+    <value>Hide</value>
+  </data>
   <data name="IdentifierHeader.Header" xml:space="preserve">
     <value>Identifier</value>
+  </data>
+  <data name="LicenseText.Text" xml:space="preserve">
+    <value>This application is open source, and it's licensed under the
+GNU General Public License v3.0</value>
   </data>
   <data name="MissingFieldsError" xml:space="preserve">
     <value>One (or more) of the required fields are empty.</value>
@@ -174,7 +187,31 @@
   <data name="ServiceNameText.Text" xml:space="preserve">
     <value>Service name:</value>
   </data>
+  <data name="Settings-EnglishLanguage" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="Settings-Header.Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Settings-Language-Dropdown.PlaceholderText" xml:space="preserve">
+    <value>Select a language...</value>
+  </data>
+  <data name="Settings-Language.Text" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="Settings-ShowPassword-Text.Text" xml:space="preserve">
+    <value>Show all passwords by default</value>
+  </data>
+  <data name="Settings-SpanishLanguage" xml:space="preserve">
+    <value>Spanish</value>
+  </data>
+  <data name="Settings-UseMica-Text.Text" xml:space="preserve">
+    <value>Enable background translucent effects (Mica)</value>
+  </data>
   <data name="ShowPassFlyout.Text" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="ShowPassFlyoutExtra" xml:space="preserve">
     <value>Show</value>
   </data>
   <data name="TagHeader.Header" xml:space="preserve">

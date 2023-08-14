@@ -159,7 +159,7 @@ namespace Keybind
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigateDefault(typeof(SettingsModal), null);
+            NavigateDefault(typeof(SettingsView), null);
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)

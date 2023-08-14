@@ -188,11 +188,13 @@ namespace Keybind.Front
                 if (passwordText.Text == selectedService.MaskedPassword)
                 {
                     passwordText.Text = selectedService.Password;
+                    item.Text = Lifecycle.GetLocalizedString("HidePassFlyout");
                     return;
                 }
                 if (passwordText.Text == selectedService.Password)
                 {
                     passwordText.Text = selectedService.MaskedPassword;
+                    item.Text = Lifecycle.GetLocalizedString("ShowPassFlyoutExtra");
                 }
             }
 

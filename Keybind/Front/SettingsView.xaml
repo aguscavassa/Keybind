@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Keybind.Front.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Keybind.Front"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled">
+
+    <StackPanel HorizontalAlignment="Center" Margin="0,24,0,0" Background="#0FFFFFFF" CornerRadius="8" MinWidth="500" BorderBrush="#1FFFFFFF" BorderThickness="1">
+        <TextBlock x:Uid="Settings-Header" FontSize="18" Margin="8,12,8,12" TextAlignment="Center" FontWeight="SemiBold"/>
+
+        <Rectangle Width="Auto" Height="1" Fill="#0FFFFFFF"></Rectangle>
+
+        <RelativePanel Margin="8,8,8,8">
+            <TextBlock x:Uid="Settings-Language" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="8,0,120,0"/>
+            <ComboBox x:Name="SettingsLanguageDropdown" ItemsSource="{x:Bind Languages}" x:Uid="Settings-Language-Dropdown" RelativePanel.AlignRightWithPanel="True" Width="200"/>
+        </RelativePanel>
+
+        <RelativePanel Margin="8,8,8,8">
+            <TextBlock x:Uid="Settings-ShowPassword-Text" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="8,0,120,0"/>
+            <CheckBox x:Name="ShowPasswordsCheckbox" IsChecked="{x:Bind ShowPasswordsSetting}" RelativePanel.AlignRightWithPanel="True" FlowDirection="RightToLeft" Margin="0,0,6,0"/>
+        </RelativePanel>
+
+        <RelativePanel Margin="8,8,8,8">
+            <TextBlock x:Uid="Settings-UseMica-Text" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="8,0,120,0"/>
+            <CheckBox x:Name="SettingsMicaCheckbox" IsChecked="{x:Bind UseMicaEffectsSetting}" RelativePanel.AlignRightWithPanel="True" FlowDirection="RightToLeft" Margin="0,0,6,0"/>
+        </RelativePanel>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <Button x:Name="ApplyButton" HorizontalAlignment="Center" Margin="0,8,0,8" Style="{StaticResource AccentButtonStyle}" Click="ApplyButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Viewbox Height="15" Width="15" Margin="0,0,6,0">
+                        <SymbolIcon x:Name="AcceptSymbol" Symbol="Accept"/>
+                    </Viewbox>
+                    <TextBlock x:Uid="ApplyButton"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="CancelButton" HorizontalAlignment="Center" Margin="8,8,0,8" Click="CancelButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Viewbox Height="15" Width="15" Margin="0,0,6,0">
+                        <SymbolIcon Symbol="Cancel"/>
+                    </Viewbox>
+                    <TextBlock x:Uid="CancelButton"/>
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+        
+        <Rectangle Width="Auto" Height="1" Fill="#0FFFFFFF"></Rectangle>
+        <Button x:Name="DeleteButton" HorizontalAlignment="Center" Margin="0,8,0,8" Click="DeleteButton_Click">
+            <StackPanel Orientation="Horizontal">
+                <Viewbox Height="15" Width="15" Margin="0,0,6,0">
+                    <SymbolIcon Symbol="Delete"/>
+                </Viewbox>
+                <TextBlock x:Uid="DeleteAllButton"/>
+            </StackPanel>
+        </Button>
+        <Rectangle Width="Auto" Height="1" Fill="#0FFFFFFF"></Rectangle>
+
+        <RelativePanel HorizontalAlignment="Center" Margin="0,10,0,10" BorderThickness="1" BorderBrush="#2FFFFFFF" Background="#0FFFFFFF" CornerRadius="4" Width="480">
+            <HyperlinkButton x:Name="GithubButton" HorizontalAlignment="Center" Margin="8,8,0,8" NavigateUri="https://github.com/aguscavassa/Keybind" RelativePanel.AlignLeftWithPanel="True">
+                <StackPanel Orientation="Horizontal">
+                    <Viewbox Height="15" Width="15" Margin="0,0,6,0">
+                        <ImageIcon Source="/Assets/github-mark-white.png" />
+                    </Viewbox>
+                    <TextBlock Text="Github"/>
+                </StackPanel>
+            </HyperlinkButton>
+            <TextBlock x:Uid="LicenseText" FontSize="11" Padding="4" Margin="0,0,8,0" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" TextAlignment="Right"/>
+        </RelativePanel>
+    </StackPanel>
+</Page>

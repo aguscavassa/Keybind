@@ -11,8 +11,8 @@
     NavigationCacheMode="Enabled">
 
     <!--TODO: Rewrite this page and the AddView page to minimize repetition using user controls.-->
-    <StackPanel HorizontalAlignment="Center" Margin="0,24,0,0" Background="#0FFFFFFF" CornerRadius="8" MinWidth="400">
-        <TextBlock x:Uid="EditHeader" FontSize="18" Margin="8,8,8,8" TextAlignment="Center"/>
+    <StackPanel HorizontalAlignment="Center" Margin="0,24,0,0" Background="#0FFFFFFF" CornerRadius="8" MinWidth="400" BorderBrush="#1FFFFFFF" BorderThickness="1">
+        <TextBlock x:Uid="EditHeader" FontSize="18" Margin="8,12,8,12" TextAlignment="Center" FontWeight="SemiBold"/>
 
         <Rectangle Width="Auto" Height="1" Fill="#0FFFFFFF"></Rectangle>
 
@@ -21,21 +21,15 @@
             <AutoSuggestBox x:Uid="TagSearchBox" x:Name="TagField" Width="200" RelativePanel.AlignRightWithPanel="True" TextChanged="TagField_TextChanged" PlaceholderText="Create or reuse a tag..."></AutoSuggestBox>
         </RelativePanel>
 
-        <Rectangle Width="Auto" Height="1" Fill="#0FFFFFFF"></Rectangle>
-
         <RelativePanel Margin="8,8,8,8">
             <TextBlock x:Uid="ServiceNameText" Margin="8,0,60,0" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
             <TextBox x:Uid="Required" x:Name="ServiceNameField" PlaceholderText="(Required)" Width="200" RelativePanel.AlignRightWithPanel="True" IsTextPredictionEnabled="False"/>
         </RelativePanel>
 
-        <Rectangle Width="Auto" Height="1" Fill="#0FFFFFFF"></Rectangle>
-
         <RelativePanel Margin="8,8,8,8">
             <TextBlock x:Uid="UsernameText" Margin="8,0,0,0" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>
             <TextBox x:Uid="Required" x:Name="UserField" PlaceholderText="(Required)" Width="200" RelativePanel.AlignRightWithPanel="True" IsTextPredictionEnabled="False"/>
         </RelativePanel>
-
-        <Rectangle Width="Auto" Height="1" Fill="#0FFFFFFF"></Rectangle>
 
         <RelativePanel Margin="8,8,8,8">
             <TextBlock x:Uid="PasswordFieldText" x:Name="PasswordText" Text="Password:" Margin="8,0,0,0" Width="Auto" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True"/>

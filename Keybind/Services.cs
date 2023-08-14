@@ -94,6 +94,11 @@ namespace Keybind.Services
 
         }
 
+        public static void Purge()
+        {
+            ServiceCollection.Clear();
+        }
+
         public static bool SaveListToDisk()
         {
             string jsonSerialized = JsonSerializer.Serialize(ServiceCollection);

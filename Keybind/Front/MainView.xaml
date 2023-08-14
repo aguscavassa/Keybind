@@ -22,7 +22,7 @@
         </MenuFlyout>
 
         <MenuFlyout x:Key="PasswordContext" Opening="MenuFlyout_Opening">
-            <MenuFlyoutItem x:Uid="ShowPassFlyout" Tag="show" Click="PasswordMenuFlyoutItem_Click">
+            <MenuFlyoutItem x:Name="ShowPassFlyout" x:Uid="ShowPassFlyout" Tag="show" Click="PasswordMenuFlyoutItem_Click">
                 <MenuFlyoutItem.Icon>
                     <FontIcon Glyph="&#xE7B3;"/>
                 </MenuFlyoutItem.Icon>

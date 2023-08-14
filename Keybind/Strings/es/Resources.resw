@@ -144,6 +144,9 @@
   <data name="EditHeader.Text" xml:space="preserve">
     <value>Editar...</value>
   </data>
+  <data name="HidePassFlyout" xml:space="preserve">
+    <value>Esconder</value>
+  </data>
   <data name="IdentifierHeader.Header" xml:space="preserve">
     <value>Identificador</value>
   </data>
@@ -175,6 +178,9 @@
     <value>Nombre del servicio:</value>
   </data>
   <data name="ShowPassFlyout.Text" xml:space="preserve">
+    <value>Mostrar</value>
+  </data>
+  <data name="ShowPassFlyoutExtra" xml:space="preserve">
     <value>Mostrar</value>
   </data>
   <data name="TagHeader.Header" xml:space="preserve">
