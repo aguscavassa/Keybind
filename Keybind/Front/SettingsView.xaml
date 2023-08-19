@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Keybind.Front"
+    xmlns:Back="using:Keybind.Back"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -16,17 +17,12 @@
 
         <RelativePanel Margin="8,8,8,8">
             <TextBlock x:Uid="Settings-Language" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="8,0,120,0"/>
-            <ComboBox x:Name="SettingsLanguageDropdown" ItemsSource="{x:Bind Languages}" x:Uid="Settings-Language-Dropdown" RelativePanel.AlignRightWithPanel="True" Width="200"/>
-        </RelativePanel>
-
-        <RelativePanel Margin="8,8,8,8">
-            <TextBlock x:Uid="Settings-ShowPassword-Text" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="8,0,120,0"/>
-            <CheckBox x:Name="ShowPasswordsCheckbox" IsChecked="{x:Bind ShowPasswordsSetting}" RelativePanel.AlignRightWithPanel="True" FlowDirection="RightToLeft" Margin="0,0,6,0"/>
+            <ComboBox x:Name="SettingsLanguageDropdown" ItemsSource="{x:Bind Back:SettingsManagement.Languages}" x:Uid="Settings-Language-Dropdown" RelativePanel.AlignRightWithPanel="True" Width="200"/>
         </RelativePanel>
 
         <RelativePanel Margin="8,8,8,8">
             <TextBlock x:Uid="Settings-UseMica-Text" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="8,0,120,0"/>
-            <CheckBox x:Name="SettingsMicaCheckbox" IsChecked="{x:Bind UseMicaEffectsSetting}" RelativePanel.AlignRightWithPanel="True" FlowDirection="RightToLeft" Margin="0,0,6,0"/>
+            <CheckBox x:Name="SettingsMicaCheckbox" IsChecked="{x:Bind Back:SettingsManagement.CurrentSettings.UseMicaEffectsSetting}" RelativePanel.AlignRightWithPanel="True" FlowDirection="RightToLeft" Margin="0,0,6,0"/>
         </RelativePanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -66,7 +62,7 @@
             <HyperlinkButton x:Name="GithubButton" HorizontalAlignment="Center" Margin="8,8,0,8" NavigateUri="https://github.com/aguscavassa/Keybind" RelativePanel.AlignLeftWithPanel="True">
                 <StackPanel Orientation="Horizontal">
                     <Viewbox Height="15" Width="15" Margin="0,0,6,0">
-                        <ImageIcon Source="/Assets/github-mark-white.png" />
+                        <ImageIcon Source="{x:Bind Back:Lifecycle.ImageAssets[0]}" />
                     </Viewbox>
                     <TextBlock Text="Github"/>
                 </StackPanel>

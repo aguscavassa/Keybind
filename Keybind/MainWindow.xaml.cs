@@ -1,29 +1,18 @@
 using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Media.Animation;
-using Microsoft.UI.Xaml.Navigation;
 using System;
 using Keybind.Front;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using WinRT.Interop;
 using Windows.UI;
 using System.Runtime.InteropServices;
-using Windows.UI.ViewManagement;
-using System.Diagnostics;
-using Keybind.Services;
-using Windows.ApplicationModel.Resources;
+using Keybind.Back;
 
 namespace Keybind
 {
@@ -58,8 +47,8 @@ namespace Keybind
             _mainAppWindow.TitleBar.PreferredHeightOption = TitleBarHeightOption.Tall;
             _mainAppWindow.Destroying += (AppWindow u, object o) =>
             {
-                Services.CollectionManagement.ServiceCollection = MainView.MainViewPage.MainDataGrid.ItemsSource.Cast<Services.Service>().ToList();
-                Services.CollectionManagement.SaveListToDisk();
+                CollectionManagement.ServiceCollection = MainView.MainViewPage.MainDataGrid.ItemsSource.Cast<Service>().ToList();
+                CollectionManagement.SaveListToDisk();
             };
         }
 

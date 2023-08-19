@@ -1,17 +1,12 @@
-﻿using Keybind.Front;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace Keybind.Services
+namespace Keybind.Back
 {
     public class Service : IEquatable<Service>
     {
@@ -47,7 +42,7 @@ namespace Keybind.Services
         public bool Equals(Service other)
         {
             if (other == null) return false;
-            return (this.Name.Equals(other.Name) && this.User.Equals(other.User));
+            return Name.Equals(other.Name) && User.Equals(other.User);
         }
 
     }
@@ -77,7 +72,7 @@ namespace Keybind.Services
 
         public static void Modify(Service service, Service newService)
         {
-            Service helper = ServiceCollection.Find(x => (x.Name == service.Name) && (x.User == service.User) && (x.Password == service.Password));
+            Service helper = ServiceCollection.Find(x => x.Name == service.Name && x.User == service.User && x.Password == service.Password);
             helper.User = newService.User;
             helper.Password = newService.Password;
             helper.Name = newService.Name;

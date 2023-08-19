@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="------------------------------" xml:space="preserve">
-    <value />
-  </data>
   <data name="AcceptButton.Text" xml:space="preserve">
     <value>Aceptar</value>
+  </data>
+  <data name="AcceptButtonGeneral" xml:space="preserve">
+    <value>Accept</value>
   </data>
   <data name="AddButton.Text" xml:space="preserve">
     <value>Agregar...</value>
@@ -129,11 +129,29 @@
   <data name="AddHeader.Text" xml:space="preserve">
     <value>Agregar...</value>
   </data>
+  <data name="ApplyButton.Text" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
   <data name="CancelButton.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CancelButtonGeneral" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="CopyFlyout.Text" xml:space="preserve">
     <value>Copiar</value>
+  </data>
+  <data name="DeleteAllButton.Text" xml:space="preserve">
+    <value>Eliminar todos los servicios</value>
+  </data>
+  <data name="DeleteAllDialogTitle" xml:space="preserve">
+    <value>¿Eliminar todo?</value>
+  </data>
+  <data name="DeleteAllDialogueContentFirst" xml:space="preserve">
+    <value>¿Quieres eliminar todos los servicios guardados?</value>
+  </data>
+  <data name="DeleteAllDialogueContentSecond" xml:space="preserve">
+    <value>Esto incluye nombres de usuario, etiquetas, emails y contraseñas.</value>
   </data>
   <data name="DeleteButton.Text" xml:space="preserve">
     <value>Eliminar...</value>
@@ -144,11 +162,12 @@
   <data name="EditHeader.Text" xml:space="preserve">
     <value>Editar...</value>
   </data>
-  <data name="HidePassFlyout" xml:space="preserve">
-    <value>Esconder</value>
-  </data>
   <data name="IdentifierHeader.Header" xml:space="preserve">
     <value>Identificador</value>
+  </data>
+  <data name="LicenseText.Text" xml:space="preserve">
+    <value>Esta aplicación es de código abierto, y esta bajo licencia 
+GNU General Public License v3.0</value>
   </data>
   <data name="MissingFieldsError" xml:space="preserve">
     <value>Uno (o más) de los campos requeridos están vacios.</value>
@@ -177,11 +196,29 @@
   <data name="ServiceNameText.Text" xml:space="preserve">
     <value>Nombre del servicio:</value>
   </data>
+  <data name="Settings-EnglishLanguage" xml:space="preserve">
+    <value>Inglés</value>
+  </data>
+  <data name="Settings-Header.Text" xml:space="preserve">
+    <value>Ajustes</value>
+  </data>
+  <data name="Settings-Language.Text" xml:space="preserve">
+    <value>Idioma:</value>
+  </data>
+  <data name="Settings-Language-Dropdown.PlaceholderText" xml:space="preserve">
+    <value>Selecciona un idioma...</value>
+  </data>
+  <data name="Settings-SpanishLanguage" xml:space="preserve">
+    <value>Español</value>
+  </data>
+  <data name="Settings-UseMica-Text.Text" xml:space="preserve">
+    <value>Activar efectos translúcidos de fondo (Mica)</value>
+  </data>
   <data name="ShowPassFlyout.Text" xml:space="preserve">
-    <value>Mostrar</value>
+    <value>Mostrar/Ocultar</value>
   </data>
   <data name="ShowPassFlyoutExtra" xml:space="preserve">
-    <value>Mostrar</value>
+    <value>Mostrar/Ocultar</value>
   </data>
   <data name="TagHeader.Header" xml:space="preserve">
     <value>Etiqueta</value>

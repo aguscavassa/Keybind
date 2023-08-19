@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Security.Cryptography;
-using Keybind.Front;
-using System.Collections.Generic;
 using Windows.ApplicationModel.DataTransfer;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml;
 using Microsoft.Windows.ApplicationModel.Resources;
-using Microsoft.VisualBasic;
 
-namespace Keybind;
+namespace Keybind.Back;
 
 public static class Lifecycle
 {
@@ -23,6 +16,15 @@ public static class Lifecycle
     public static string UserDir { get => userDir; set => userDir = value; }
 
     public static string UserUuid { get => userUuid; set => userUuid = value; }
+
+    public static string AssetsFolder = AppDomain.CurrentDomain.BaseDirectory + @"\AppX\Assets\";
+
+    public static string[] ImageAssets = new string[]
+    {
+        AssetsFolder + "github-mark-white.png",
+        AssetsFolder + "Square44x44Logo.targetsize-256.png"
+    };
+    
 
     public static void Init()
     {
@@ -40,12 +42,14 @@ public static class Lifecycle
         }
         try
         {
-            Services.CollectionManagement.LoadListFromDisk();
-
-        } catch (FileNotFoundException)
-        {
-            Services.CollectionManagement.GenerateServiceCollection();
+            CollectionManagement.LoadListFromDisk();
         }
+        catch (FileNotFoundException)
+        {
+            CollectionManagement.GenerateServiceCollection();
+        }
+        SettingsManagement.GetSettings();
+        Console.WriteLine(ImageAssets[0]);
     }
 
     public static string CreateRandomString(int length = 12)
@@ -77,9 +81,9 @@ public static class Lifecycle
         for (int i = 0; i < j; i++)
         {
             UIElement child = (UIElement)VisualTreeHelper.GetChild(parent, i);
-            if (GetWindowItem<T>(child, type, name) != null)
+            if (child.GetWindowItem<T>(type, name) != null)
             {
-                result = GetWindowItem<T>(child, type, name);
+                result = child.GetWindowItem<T>(type, name);
                 break;
             }
         }
@@ -90,6 +94,16 @@ public static class Lifecycle
     {
         return resManager.MainResourceMap.GetSubtree("Resources").GetValue(value).ValueAsString;
     }
-}
+
+    public static void SetLanguage(int activeLanguage)
+    {
+        System.Threading.Thread.CurrentThread.CurrentUICulture = SettingsManagement.Languages[activeLanguage];
+        //Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = SettingsManagement.Languages[activeLanguage].Name;
+        Windows.ApplicationModel.Resources.Core.ResourceContext.GetForViewIndependentUse().Reset();
+        Windows.ApplicationModel.Resources.Core.ResourceManager.Current.DefaultContext.Reset();
+    }
 
     
+}
+
+

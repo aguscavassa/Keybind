@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="------------------------------" xml:space="preserve">
-    <value />
-  </data>
   <data name="AcceptButton.Text" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="AcceptButtonGeneral" xml:space="preserve">
     <value>Accept</value>
   </data>
   <data name="AddButton.Text" xml:space="preserve">
@@ -135,11 +135,23 @@
   <data name="CancelButton.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="CancelButtonGeneral" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="CopyFlyout.Text" xml:space="preserve">
     <value>Copy</value>
   </data>
   <data name="DeleteAllButton.Text" xml:space="preserve">
     <value>Delete all saved services</value>
+  </data>
+  <data name="DeleteAllDialogTitle" xml:space="preserve">
+    <value>Delete all?</value>
+  </data>
+  <data name="DeleteAllDialogueContentFirst" xml:space="preserve">
+    <value>Do you want to delete all stored services?</value>
+  </data>
+  <data name="DeleteAllDialogueContentSecond" xml:space="preserve">
+    <value>This includes saved usernames, tags, emails and passwords.</value>
   </data>
   <data name="DeleteButton.Text" xml:space="preserve">
     <value>Delete...</value>
@@ -149,9 +161,6 @@
   </data>
   <data name="EditHeader.Text" xml:space="preserve">
     <value>Edit...</value>
-  </data>
-  <data name="HidePassFlyout" xml:space="preserve">
-    <value>Hide</value>
   </data>
   <data name="IdentifierHeader.Header" xml:space="preserve">
     <value>Identifier</value>
@@ -193,14 +202,11 @@ GNU General Public License v3.0</value>
   <data name="Settings-Header.Text" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="Settings-Language-Dropdown.PlaceholderText" xml:space="preserve">
-    <value>Select a language...</value>
-  </data>
   <data name="Settings-Language.Text" xml:space="preserve">
     <value>Language:</value>
   </data>
-  <data name="Settings-ShowPassword-Text.Text" xml:space="preserve">
-    <value>Show all passwords by default</value>
+  <data name="Settings-Language-Dropdown.PlaceholderText" xml:space="preserve">
+    <value>Select a language...</value>
   </data>
   <data name="Settings-SpanishLanguage" xml:space="preserve">
     <value>Spanish</value>
@@ -209,10 +215,10 @@ GNU General Public License v3.0</value>
     <value>Enable background translucent effects (Mica)</value>
   </data>
   <data name="ShowPassFlyout.Text" xml:space="preserve">
-    <value>Show</value>
+    <value>Show/Hide</value>
   </data>
   <data name="ShowPassFlyoutExtra" xml:space="preserve">
-    <value>Show</value>
+    <value>Show/Hide</value>
   </data>
   <data name="TagHeader.Header" xml:space="preserve">
     <value>Tag</value>

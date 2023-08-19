@@ -1,14 +1,6 @@
 ﻿using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using System;
-using Microsoft.UI.Xaml.Media.Animation;
-using Keybind.Front;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Composition.SystemBackdrops;
 using System.IO;
-using System.Security.Cryptography;
-using System.Text;
-using System.Diagnostics;
+using Keybind.Back;
 
 namespace Keybind
 {
@@ -28,10 +20,11 @@ namespace Keybind
             m_window.Activate();
             try
             {
-                Services.CollectionManagement.LoadListFromDisk();
+                SettingsManagement.GetSettings();
+                CollectionManagement.LoadListFromDisk();
             } catch (FileNotFoundException)
             {
-                Services.CollectionManagement.GenerateServiceCollection();
+                CollectionManagement.GenerateServiceCollection();
             }
         }
 

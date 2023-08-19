@@ -1,23 +1,10 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using System.Diagnostics;
-using Keybind.Services;
 using CommunityToolkit.WinUI.UI.Controls;
 using System.Collections.ObjectModel;
-using Windows.ApplicationModel.DataTransfer;
+using Keybind.Back;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -57,7 +44,7 @@ namespace Keybind.Front
                 case "Name":
                     if (e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending)
                     {
-                        CollectionHelper = CollectionManagement.ServiceCollection.OrderBy(x  => x.Name);
+                        CollectionHelper = CollectionManagement.ServiceCollection.OrderBy(x => x.Name);
                         foreach (Service service in CollectionHelper)
                         {
                             currentServicesCollection.Add(service);
@@ -143,7 +130,7 @@ namespace Keybind.Front
                     }
                     break;
                 default:
-                break;
+                    break;
             }
             CollectionHelper = null;
 
@@ -166,7 +153,7 @@ namespace Keybind.Front
         {
             var normalFlyout = Resources["Context"] as MenuFlyout;
             var normalTarget = normalFlyout.Target;
-            MenuFlyoutItem item = (MenuFlyoutItem) sender;
+            MenuFlyoutItem item = (MenuFlyoutItem)sender;
             TextBlock cellText = (TextBlock)((Grid)normalTarget).Children[0];
 
             if (string.Equals(item.Tag.ToString(), "copy"))
@@ -188,7 +175,6 @@ namespace Keybind.Front
                 if (passwordText.Text == selectedService.MaskedPassword)
                 {
                     passwordText.Text = selectedService.Password;
-                    item.Text = Lifecycle.GetLocalizedString("HidePassFlyout");
                     return;
                 }
                 if (passwordText.Text == selectedService.Password)

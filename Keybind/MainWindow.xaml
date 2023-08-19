@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Keybind"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Back="using:Keybind.Back"
     mc:Ignorable="d">
 
     <Window.SystemBackdrop>
@@ -23,7 +23,7 @@
                 <ColumnDefinition x:Name="RightDraggingCol" Width="*" />
                 <ColumnDefinition x:Name="RightPaddingCol" Width="0" />
             </Grid.ColumnDefinitions>
-            <Image x:Name="ProperIcon" Source="/Assets/Square44x44Logo.scale-200.png"
+            <Image x:Name="ProperIcon" Source="{x:Bind Back:Lifecycle.ImageAssets[1]}"
                Grid.Column="1" VerticalAlignment="Center" Width="16" Height="16" Margin="16,0,0,0"/>
             
             <TextBlock x:Name="TitleText" Text="Keybind" Grid.Column="2" VerticalAlignment="Center" Margin="8,0,0,0"/>
