@@ -253,4 +253,9 @@ GNU General Public License v3.0</value>
   <data name="UsernameText.Text" xml:space="preserve">
     <value>Usuario/Email/Identificador:</value>
   </data>
+  <data name="Language-Info.Text" xml:space="preserve">
+    <value>Para modificar el idioma, debes modificar el idioma de visualización de Windows
+a Inglés o Español (cualquier variante) y reiniciar la aplicación
+(Ver Issue #4 en Github para más información)</value>
+  </data>
 </root>

@@ -253,4 +253,9 @@ GNU General Public License v3.0</value>
   <data name="UsernameText.Text" xml:space="preserve">
     <value>User/Email/Identifier:</value>
   </data>
+  <data name="Language-Info.Text" xml:space="preserve">
+    <value>To modify the language, you must change Windows' display language
+to either English or Spanish (any variant) and restart the app.
+(See Issue #4 on Github for more info)</value>
+  </data>
 </root>

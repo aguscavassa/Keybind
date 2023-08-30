@@ -10,12 +10,11 @@ namespace Keybind.Front
         public SettingsView()
         {
             this.InitializeComponent();
-            SettingsLanguageDropdown.SelectedItem = SettingsManagement.Languages[SettingsManagement.CurrentSettings.ActiveLanguage];
         }
 
         private void ApplyButton_Click(object sender, RoutedEventArgs e)
         {
-            SettingsManagement.SetSettings(new SettingsManagement.Settings(SettingsLanguageDropdown.SelectedIndex, (bool)SettingsMicaCheckbox.IsChecked));
+            SettingsManagement.SetSettings(new SettingsManagement.Settings(0, (bool)SettingsMicaCheckbox.IsChecked));
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
